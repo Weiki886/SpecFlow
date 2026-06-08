@@ -1,0 +1,31 @@
+# ============================================
+# SpecFlow — Root .gitignore
+# ============================================
+
+# IDE
+.idea/
+*.iml
+.vscode/
+.DS_Store
+
+# Maven
+target/
+
+# Node
+node_modules/
+dist/
+
+# Env
+.env
+.env.local
+*.local
+
+# Logs
+*.log
+logs/
+
+# Packages
+*.jar
+*.war
+*.zip
+*.tar.gz
