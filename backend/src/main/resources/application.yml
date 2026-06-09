@@ -1,16 +1,27 @@
 server:
-  port: 8080
+  port: ${SERVER_PORT:8080}
 
 spring:
+  application:
+    name: specflow-backend
+  profiles:
+    active: ${SPRING_PROFILES_ACTIVE:local}
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
   datasource:
-    url: jdbc:mysql://localhost:3306/specflow?useUnicode=true&characterEncoding=utf8mb4&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:specflow}?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true&connectionCollation=utf8mb4_unicode_ci
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:your-db-password}
+
   data:
     redis:
-      host: localhost
-      port: 6379
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      database: 0
+
   sql:
     init:
       mode: never
@@ -27,26 +38,28 @@ mybatis-plus:
       logic-not-delete-value: 0
 
 jwt:
-  secret: specflow-jwt-secret-key-must-be-at-least-256-bits-long!!
-  expiration: 604800000
+  secret: ${JWT_SECRET:specflow-jwt-secret-key-must-be-at-least-256-bits-long!!}
+  expiration: ${JWT_EXPIRATION:604800000}
 
 llm:
   deepseek:
     api-key: ${DEEPSEEK_API_KEY:your-deepseek-key}
-    model: deepseek-chat
-    base-url: https://api.deepseek.com
+    model: ${DEEPSEEK_MODEL:deepseek-chat}
+    base-url: ${DEEPSEEK_BASE_URL:https://api.deepseek.com}
   qwen:
     api-key: ${QWEN_API_KEY:your-qwen-key}
-    model: qwen-plus
+    model: ${QWEN_MODEL:qwen-plus}
 
 specflow:
   cors:
-    allowed-origins: http://localhost:5173,http://localhost:3000
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173,http://localhost:3000}
 
 knife4j:
   enable: true
   setting:
     language: zh_cn
+    enableSwaggerModels: true
+    enableDocumentMutation: true
   openapi:
     title: SpecFlow 接口文档
     description: AI 驱动的软件开发生命周期治理平台
