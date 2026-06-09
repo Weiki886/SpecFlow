@@ -22,7 +22,7 @@
         <mybatis-plus.version>3.5.6</mybatis-plus.version>
         <knife4j.version>4.5.0</knife4j.version>
         <jjwt.version>0.12.5</jjwt.version>
-        <langchain4j.version>1.0.0-alpha1</langchain4j.version>
+        <langchain4j.version>1.0.0</langchain4j.version>
     </properties>
 
     <dependencies>
@@ -102,7 +102,7 @@
         <dependency>
             <groupId>dev.langchain4j</groupId>
             <artifactId>langchain4j-community-dashscope</artifactId>
-            <version>${langchain4j.version}</version>
+            <version>1.0.1-beta6</version>
         </dependency>
 
         <!-- Lombok -->

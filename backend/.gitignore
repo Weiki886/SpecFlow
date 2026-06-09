@@ -31,3 +31,6 @@ logs/
 *.zip
 *.tar.gz
 *.rar
+
+# Local config (contains sensitive info)
+application-local.yml
